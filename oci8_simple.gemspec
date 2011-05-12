@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/oci8_simple.rb",
+    "oci8_simple.gemspec",
     "test/helper.rb",
     "test/test_oci8_simple.rb"
   ]
