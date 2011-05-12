@@ -10,6 +10,10 @@ require 'yaml'
 # Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
 # command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
 # The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine. 
+# 
+# == Installation
+# [sudo] gem install oci8-simple
+# 
 # == Configuration
 # To configure environments and schema settings, edit the 
 # database.yml file in ~/.oci8_simple/
@@ -21,9 +25,10 @@ require 'yaml'
 #     database: oracle.hostname:1521/sid
 #     username: foo_test
 #     password: OMG333
-#
+# 
 # == Logging
 # All logging is done to ~/.oci8_simple/oci8_simple.log
+# 
 # == Examples 
 # * Initialize a client against the development schema
 #     client = Oci8Simple.new
