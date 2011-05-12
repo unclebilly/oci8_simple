@@ -15,14 +15,14 @@ Jeweler::Tasks.new do |gem|
   gem.name = "oci8_simple"
   gem.homepage = "http://github.com/unclebilly/oci8_simple"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Run single statements against an arbitrary Oracle schema.}
+  gem.description = %Q{Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
+  command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
+  The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
   gem.email = "billy.reisinger@gmail.com"
   gem.authors = ["Billy Reisinger"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_dependency "ruby-oci8", "~> 2.0.4"
+  gem.extra_rdoc_files = ['README.rdoc']
 end
 Jeweler::RubygemsDotOrgTasks.new
 
