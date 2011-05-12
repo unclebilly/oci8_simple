@@ -61,12 +61,12 @@ class Oci8Simple
   CONFIG_FILE = File.join(USER_DIR, "database.yml")
   LOG_FILE = File.join(USER_DIR, "oci8_simple.log")
   
-  attr_accessor :log_file, :puts_mode
+  attr_accessor :log_file, :puts_mode, :env
   
   # * env is the environment heading in your database.yml file
   # * uname is the username you want to use (defaults to config["username"])
   # * puts_mode is whether you want to format the result for printing to a terminal (defaults to false)
-  def initialize(env, uname=nil, puts_mode=false)
+  def initialize(env="development", uname=nil, puts_mode=false)
     @env = env
     @uname = uname
     @puts_mode = puts_mode

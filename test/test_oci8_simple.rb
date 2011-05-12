@@ -1,6 +1,12 @@
 require 'helper'
 
 class TestOci8Simple < Test::Unit::TestCase
+  context "A client" do
+    should "default to development environment" do
+      @client = Oci8Simple.new
+      assert_equal "development", @client.env
+    end
+  end
   context "Given a table" do
     setup do
       @client = Oci8Simple.new("test", nil, false)
