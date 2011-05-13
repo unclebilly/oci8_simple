@@ -5,7 +5,7 @@ command-line scripts to aid automation.  This is *not* meant to replace an ORM s
 The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine. 
 
 == Installation
-[sudo] gem install oci8-simple
+[sudo] gem install oci8_simple
 
 == Configuration
 To configure environments and schema settings, edit the 
@@ -24,11 +24,9 @@ All logging is done to ~/.oci8_simple/oci8_simple.log
 
 == Examples 
 * Initialize a client against the development schema
-    client = Oci8Simple.new
+    client = Oci8Simple::Client.new
 * Run a simple select query against development schema
     client.run('select id, name from foos') => [[2, "lol"], [3, "hey"], ...]
-* Run a simple select query against stage schema
-    Oci8Simple.new("stage").run('select id, name from foos') => [[2, "lol"], [3, "hey"], ...]
 * Update something
     client.run <<-SQL
       UPDATE foos SET bar='baz' WHERE id=1233
@@ -49,6 +47,8 @@ All logging is done to ~/.oci8_simple/oci8_simple.log
         INSERT INTO T1 VALUES(b,a);
       END;
     SQL
+* Run a query against stage schema
+    Oci8Simple::Client.new("stage").run('select id, name from foos') => [[2, "lol"], [3, "hey"], ...]  
     
 == Contributing to oci8_simple
  

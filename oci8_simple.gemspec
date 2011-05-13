@@ -26,9 +26,12 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/oci8_simple.rb",
+    "lib/oci8_simple/cli.rb",
+    "lib/oci8_simple/client.rb",
     "oci8_simple.gemspec",
-    "test/helper.rb",
-    "test/test_oci8_simple.rb"
+    "test/cli_test.rb",
+    "test/client_test.rb",
+    "test/helper.rb"
   ]
   s.homepage = %q{http://github.com/unclebilly/oci8_simple}
   s.licenses = ["MIT"]
@@ -36,8 +39,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.5.2}
   s.summary = %q{Run single statements against an arbitrary Oracle schema.}
   s.test_files = [
-    "test/helper.rb",
-    "test/test_oci8_simple.rb"
+    "test/cli_test.rb",
+    "test/client_test.rb",
+    "test/helper.rb"
   ]
 
   if s.respond_to? :specification_version then
