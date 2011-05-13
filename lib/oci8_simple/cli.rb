@@ -1,4 +1,10 @@
 module Oci8Simple
+  # == Description
+  # A very thin wrapper around Oci8Simple::Client that formats the output
+  # as CSV (suitable for printing on the console)
+  # == Usage
+  #   cli = Oci8Simple::Cli.new
+  #   cli.run "select id, name from foos" # "3, Bacon\n5, Cheese Puffs\n..."
   class Cli
     attr_accessor :env, :client
     

@@ -44,8 +44,8 @@ module Oci8Simple
     attr_accessor :log_file, :env
   
     # * env is the environment heading in your database.yml file
-    def initialize(env="development")
-      self.env = env
+    def initialize(env=nil)
+      self.env = env || "development"
       conn.autocommit = true
     end
 

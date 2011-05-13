@@ -5,7 +5,7 @@ command-line scripts to aid automation.  This is *not* meant to replace an ORM s
 The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine. 
 
 == Installation
-[sudo] gem install oci8_simple
+  gem install oci8_simple
 
 == Configuration
 To configure environments and schema settings, edit the 
