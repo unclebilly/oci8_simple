@@ -5,15 +5,17 @@
 
 Gem::Specification.new do |s|
   s.name = %q{oci8_simple}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
-  s.date = %q{2011-05-12}
+  s.date = %q{2011-05-16}
+  s.default_executable = %q{oci8_simple}
   s.description = %q{Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
   command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
   The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
   s.email = %q{billy.reisinger@gmail.com}
+  s.executables = ["oci8_simple"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -25,6 +27,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/oci8_simple",
     "lib/oci8_simple.rb",
     "lib/oci8_simple/cli.rb",
     "lib/oci8_simple/client.rb",
@@ -52,12 +55,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
     else
       s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
     end
   else
@@ -65,6 +70,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
   end
 end
