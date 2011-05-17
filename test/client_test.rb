@@ -2,9 +2,31 @@ require File.join(File.dirname(__FILE__), 'helper')
 
 class ClientTest < Test::Unit::TestCase
   context "A client" do
-    should "default to development environment" do
+    setup do
       @client = Oci8Simple::Client.new
+    end
+    should "default to development environment" do
       assert_equal "development", @client.env
+    end
+    context "with a bad log file" do
+      setup do
+        File.expects(:open).with(Oci8Simple::Client::LOG_FILE, 'a').raises(Errno::EACCES.new("no permission"))
+      end
+      should "raise custom error" do
+        assert_raise Oci8Simple::LogError do
+          @client.log_file
+        end
+      end
+    end
+    context "with no database.yml" do
+      setup do
+        YAML.expects(:load_file).with(Oci8Simple::Client::CONFIG_FILE).raises(Errno::ENOENT.new)
+      end
+      should "raise a custom error" do
+        assert_raise Oci8Simple::ConfigError do
+          @client.config
+        end
+      end
     end
   end
   context "Given a table" do

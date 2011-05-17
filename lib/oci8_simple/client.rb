@@ -36,6 +36,9 @@
 #       END;
 #     SQL
 module Oci8Simple
+  class ConfigError < Exception; end
+  class LogError < Exception; end
+  
   class Client
     USER_DIR = File.join(ENV["HOME"], ".oci8_simple")
     CONFIG_FILE = File.join(USER_DIR, "database.yml")
@@ -46,11 +49,12 @@ module Oci8Simple
     # * env is the environment heading in your database.yml file
     def initialize(env=nil)
       self.env = env || "development"
-      conn.autocommit = true
     end
 
     def log_file
       @log_file ||= File.open(LOG_FILE, 'a')
+    rescue Errno::EACCES => e
+      raise LogError.new("Cannot write to #{LOG_FILE}... be sure you have write permissions to #{USER_DIR}")
     end
   
     def run(sql)
@@ -74,14 +78,30 @@ module Oci8Simple
   
     def config
       @config ||= YAML.load_file(CONFIG_FILE)[env]
+    rescue Errno::ENOENT => e
+      raise ConfigError.new <<-ERR
+File #{CONFIG_FILE} doesn't exist - use the following template:
+
+environment:
+  database: 192.168.1.3:1521/sid
+  username: foo_user
+  password: foobar
+
+ERR
     end
-  
+    
     private
     
     def conn
-      @conn ||= OCI8.new(config["username"], config["password"], config["database"])
+      @conn ||= new_connection
     end
-
+    
+    def new_connection
+      c = OCI8.new(config["username"], config["password"], config["database"])
+      c.autocommit = true
+      c
+    end
+    
     def log(str)
       log_file.puts "#{Time.now} - #{@env} - #{str}"
     end
