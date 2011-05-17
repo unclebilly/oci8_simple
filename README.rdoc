@@ -1,15 +1,24 @@
 = oci8_simple
 
-Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
-command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
-The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine. 
+This gem installs a bin script called oci8_simple.  The script allows you to run single statements against an 
+arbitrary Oracle schema via the command line, utilizing the power of your favorite shell.  
 
+The script uses a simple Ruby client wrapper around the ruby-oci8 gem.  The client is intended to be used by simple 
+scripts to aid automation.  The code is intentionally light-weight and featureless, with very little startup time. 
+It is not meant to be a Ruby ORM for Oracle - if you want that, look at the OracleEnhancedAdapter. 
+
+== Prerequisites: 
+* Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
+* ruby-oci8
+  
 == Installation
   gem install oci8_simple
 
 == Configuration
 To configure environments and schema settings, edit the 
-database.yml file in ~/.oci8_simple/
+database.yml file in <code>~/.oci8_simple/</code>.
+The database.yml format is compatible with the Rails format, so you may just symlink
+an existing file into this directory if you already have one.
   development:
     database: oracle.hostname:1521/sid
     username: foo_dev
@@ -20,10 +29,22 @@ database.yml file in ~/.oci8_simple/
     password: OMG333
 
 == Logging
-All logging is done to ~/.oci8_simple/oci8_simple.log
+All logging is done to <code>~/.oci8_simple/oci8_simple.log</code>.
 
-== Examples 
+== Shell Examples
+Run a query against development schema
+  oci8_simple "select id, name from flavors" 
+  
+Run a query against a different schema
+  oci8_simple "select id, name from flavors" int
+  
+Help
+  oci8_simple --help
+  
+== Code Examples 
 * Initialize a client against the development schema
+    require 'rubygems'
+    require 'oci8_simple'
     client = Oci8Simple::Client.new
 * Run a simple select query against development schema
     client.run('select id, name from foos') => [[2, "lol"], [3, "hey"], ...]
