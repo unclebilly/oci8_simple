@@ -7,8 +7,8 @@ class DescribeTest < Test::Unit::TestCase
       @client.run <<-SQL
         CREATE TABLE "OCI8_SIMPLE_TEST"
           (
-            "ID"             NUMBER(38,0) NOT NULL ENABLE,
             "NAME"           VARCHAR2(400 CHAR) NOT NULL ENABLE,
+            "ID"             NUMBER(38,0) NOT NULL ENABLE,
             "TEXTS"          CLOB
           )
       SQL
@@ -18,9 +18,12 @@ class DescribeTest < Test::Unit::TestCase
       setup do
       end
       should "format results for the command line" do
-        assert_equal(
-          "\"ID\" NUMBER(38) NOT NULL\n\"NAME\" VARCHAR2(400 CHAR) NOT NULL\n\"TEXTS\" CLOB", 
-          @describe.run("oci8_simple_test"))
+        expected=<<-STR
+"ID"    NUMBER(38)         NOT NULL
+"NAME"  VARCHAR2(400 CHAR) NOT NULL
+"TEXTS" CLOB               
+STR
+        assert_equal(expected.chop, @describe.run("oci8_simple_test"))
       end
     end
   end
