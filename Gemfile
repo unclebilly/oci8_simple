@@ -1,3 +1,5 @@
+source :rubygems
+
 gem "ruby-oci8", "~>2.0.4"
 
 group :development do

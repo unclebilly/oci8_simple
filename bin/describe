@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+$:.unshift File.join(File.dirname(__FILE__), "..", "lib")
+require 'oci8_simple'
+
+Oci8Simple::Reflector.run_from_argv

@@ -90,11 +90,14 @@ environment:
 ERR
     end
     
-    private
-    
+    # Create and return raw Oci8 connection
     def conn
       @conn ||= new_connection
     end
+    
+    private
+    
+
     
     def new_connection
       c = OCI8.new(config["username"], config["password"], config["database"])
