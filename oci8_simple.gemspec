@@ -10,12 +10,11 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
   s.date = %q{2011-06-10}
-  s.default_executable = %q{oci8_simple}
   s.description = %q{Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
   command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
   The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
   s.email = %q{billy.reisinger@gmail.com}
-  s.executables = ["oci8_simple"]
+  s.executables = ["oci8_simple", "describe"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -27,13 +26,16 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/describe",
     "bin/oci8_simple",
     "lib/oci8_simple.rb",
     "lib/oci8_simple/cli.rb",
     "lib/oci8_simple/client.rb",
+    "lib/oci8_simple/describe.rb",
     "oci8_simple.gemspec",
     "test/cli_test.rb",
     "test/client_test.rb",
+    "test/describe_test.rb",
     "test/helper.rb"
   ]
   s.homepage = %q{http://github.com/unclebilly/oci8_simple}
@@ -44,6 +46,7 @@ Gem::Specification.new do |s|
   s.test_files = [
     "test/cli_test.rb",
     "test/client_test.rb",
+    "test/describe_test.rb",
     "test/helper.rb"
   ]
 
