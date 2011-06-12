@@ -1,15 +1,18 @@
 = oci8_simple
-The script uses a simple Ruby client wrapper around the ruby-oci8 gem.  The client is intended to be used by simple 
+This gem is a thin wrapper around the ruby-oci8 gem.  The client is intended to be used by simple 
 scripts to aid automation.  The code is intentionally light-weight and featureless, with very little startup time. 
 It is not meant to be a Ruby ORM for Oracle - if you want that, look at the OracleEnhancedAdapter. 
 
-The gem includes a few command-line scripts that are useful for scripting purposes: 
+This gem installs a few command-line scripts: 
 * <code>oci8_simple</code>
   * a command to run arbitrary SQL
 * <code>describe   </code>
   * a command to describe a table
 
-== Prerequisites: 
+You can also use oci8_simple in your Ruby scripts by creating an instance of <code>Oci8Simple::Client</code> 
+(see more below).
+
+== Prerequisites 
 * Oracle Instant Client (http://www.oracle.com/technetwork/database/features/instant-client/index-097480.html)
 * ruby-oci8
   
@@ -33,9 +36,9 @@ an existing file into this directory if you already have one.
 == Logging
 All logging is done to <code>~/.oci8_simple/oci8_simple.log</code>.
 
-== Shell Examples
-This gem installs a bin script called oci8_simple.  The script allows you to run single statements against an 
-arbitrary Oracle schema via the command line, utilizing the power of your favorite shell.
+== Command-Line Examples
+This gem installs a bin script called <code>oci8_simple</code>.  The script allows you to 
+run single statements against an arbitrary Oracle schema via the command line.
 
   Run a query against development schema
     oci8_simple "select id, name from flavors" 
@@ -47,8 +50,9 @@ arbitrary Oracle schema via the command line, utilizing the power of your favori
     oci8_simple --help
 
 
-The gem installs a bin script called describe. This script shows a simple description of a table, including
-the column names (sorted), the type and size for each column, and the nullable status of the column.
+<code>oci8_simple</code> also comes with a bin script called <code>describe</code>. This script 
+shows a simple description of a table, including the column names (sorted), the type and size for 
+each column, and the nullable status of the column.
 
   Show column information for a table named "holidays"
     describe holidays
