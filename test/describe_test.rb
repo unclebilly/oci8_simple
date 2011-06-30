@@ -7,8 +7,9 @@ class DescribeTest < Test::Unit::TestCase
       @client.run <<-SQL
         CREATE TABLE "OCI8_SIMPLE_TEST"
           (
-            "NAME"           VARCHAR2(400 CHAR) NOT NULL ENABLE,
-            "ID"             NUMBER(38,0) NOT NULL ENABLE,
+            "NAME"           VARCHAR2(400 CHAR) DEFAULT 'FOO' NOT NULL ENABLE,
+            "ID"             NUMBER(38,0) DEFAULT 7 NOT NULL ENABLE,
+            "LONG_THING"     VARCHAR(2000 CHAR) DEFAULT '#{"a " * 50}' NOT NULL ENABLE,
             "TEXTS"          CLOB
           )
       SQL
@@ -19,10 +20,16 @@ class DescribeTest < Test::Unit::TestCase
       end
       should "format results for the command line" do
         expected=<<-STR
-"ID"    NUMBER(38)         NOT NULL
-"NAME"  VARCHAR2(400 CHAR) NOT NULL
-"TEXTS" CLOB               
+Required  Name        Type      Size  Char?  Char_size  Precision  Scale  Default   
+------------------------------------------------------------------------------------
+       *  id          number    22                      38         0      7         
+       *  long_thing  varchar2  4000  *      2000                         a a a a a ...
+       *  name        varchar2  1600  *      400                          FOO       
+          texts       clob                                                          
 STR
+        # puts
+        # puts expected.chop
+        # puts @describe.run("oci8_simple_test")
         assert_equal(expected.chop, @describe.run("oci8_simple_test"))
       end
     end

@@ -15,9 +15,9 @@ Jeweler::Tasks.new do |gem|
   gem.name = "oci8_simple"
   gem.homepage = "http://github.com/unclebilly/oci8_simple"
   gem.license = "MIT"
-  gem.summary = %Q{Run single statements against an arbitrary Oracle schema.}
-  gem.description = %Q{Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
-  command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
+  gem.summary = %Q{Command-line tools for interacting with an Oracle database.}
+  gem.description = %Q{Command-line tools for interacting with an Oracle database. This client is intended to be used 
+  to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
   The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
   gem.email = "billy.reisinger@gmail.com"
   gem.authors = ["Billy Reisinger"]

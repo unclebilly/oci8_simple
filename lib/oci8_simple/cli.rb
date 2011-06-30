@@ -1,4 +1,3 @@
-require 'optparse'
 module Oci8Simple
   # == Description
   # A very thin wrapper around Oci8Simple::Client that handles ARGV / options and
