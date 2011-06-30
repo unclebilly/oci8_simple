@@ -5,13 +5,13 @@
 
 Gem::Specification.new do |s|
   s.name = %q{oci8_simple}
-  s.version = "0.4.2"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
-  s.date = %q{2011-06-11}
-  s.description = %q{Run single statements against an arbitrary Oracle schema. This client is intended to be used by simple
-  command-line scripts to aid automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
+  s.date = %q{2011-06-30}
+  s.description = %q{Command-line tools for interacting with an Oracle database. This client is intended to be used 
+  to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
   The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
   s.email = %q{billy.reisinger@gmail.com}
   s.executables = ["oci8_simple", "describe"]
@@ -42,7 +42,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.5.2}
-  s.summary = %q{Run single statements against an arbitrary Oracle schema.}
+  s.summary = %q{Command-line tools for interacting with an Oracle database.}
   s.test_files = [
     "test/cli_test.rb",
     "test/client_test.rb",
