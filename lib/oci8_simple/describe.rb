@@ -37,7 +37,7 @@ module Oci8Simple
     end
   
     def self.usage
-      "Usage: #{0} TABLE_NAME [ENVIRONMENT]"
+      "Usage: #{$0} TABLE_NAME [ENVIRONMENT]"
     end
   
     def self.run_from_argv

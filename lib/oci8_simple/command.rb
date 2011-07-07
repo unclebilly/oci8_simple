@@ -1,6 +1,6 @@
 module Oci8Simple
   module Command
-    def self.inclued(base)
+    def self.included(base)
       base.extend ClassMethods
     end
     
@@ -16,6 +16,7 @@ module Oci8Simple
           end
         end
         o.parse!
+        o
       end
       
     end

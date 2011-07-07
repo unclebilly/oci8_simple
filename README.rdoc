@@ -8,7 +8,8 @@ This gem installs a few command-line scripts:
   * a command to run arbitrary SQL
 * <code>describe   </code>
   * a command to describe a table
-
+* <code>show       </code>
+  * a command to list things in the database (tables, views, etc.)
 You can also use oci8_simple in your Ruby scripts by creating an instance of <code>Oci8Simple::Client</code> 
 (see more below).
 
@@ -37,8 +38,9 @@ an existing file into this directory if you already have one.
 All logging is done to <code>~/.oci8_simple/oci8_simple.log</code>.
 
 == Command-Line Examples
-This gem installs a bin script called <code>oci8_simple</code>.  The script allows you to 
-run single statements against an arbitrary Oracle schema via the command line.
+=== oci8_simple
+This script allows you to run single statements against an 
+arbitrary Oracle schema via the command line.
 
   Run a query against development schema
     oci8_simple "select id, name from flavors" 
@@ -49,16 +51,29 @@ run single statements against an arbitrary Oracle schema via the command line.
   Help
     oci8_simple --help
 
-
-<code>oci8_simple</code> also comes with a bin script called <code>describe</code>. This script 
-shows a simple description of a table, including the column names (sorted), the type and size for 
-each column, and the nullable status of the column.
+=== describe
+This script shows a description of a table, including the column names (sorted), 
+the type and size for each column, the nullable status of the column, and the default
+value, if any.
 
   Show column information for a table named "holidays"
     describe holidays
   
   Help
     describe --help
+    
+=== show
+This command can list the following items in the database: 
+functions, packages, procedures, sequences, synonyms, tables, types, and views.
+
+  Show a list of all tables in the database
+    show tables
+    
+  Show a list of all views in the database
+    show views
+  
+  Help
+    show --help
     
 == Code Examples 
 * Initialize a client against the development schema
