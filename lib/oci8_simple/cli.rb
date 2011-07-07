@@ -6,6 +6,8 @@ module Oci8Simple
   #   cli = Oci8Simple::Cli.new
   #   cli.run "select id, name from foos" # "3, Bacon\n5, Cheese Puffs\n..."
   class Cli
+    include Command
+    
     attr_accessor :env, :client
     
     def initialize(env=nil)
@@ -29,14 +31,7 @@ module Oci8Simple
     end
     
     def self.run_from_argv
-      o = OptionParser.new do |opt|
-        opt.banner = usage
-        opt.on("-v", "--version", "Show version") do
-          puts "version #{File.read(File.join(File.dirname(__FILE__), '..', '..', 'VERSION'))}"
-          exit
-        end
-      end
-      o.parse!
+      o = parse_options(self.usage)
       if(ARGV[0].nil?)
         puts o
       else

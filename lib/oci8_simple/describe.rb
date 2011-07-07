@@ -5,6 +5,8 @@ module Oci8Simple
   # == Usage
   #   Oci8Simple::Describe.new("development").run("users")
   class Describe
+    include Command
+    
     SPACE_BETWEEN=2
     FIELDS=[
       {:select => "NULLABLE",           :header => "Required", :content => :format_nullable, :right => true},
@@ -39,14 +41,7 @@ module Oci8Simple
     end
   
     def self.run_from_argv
-      o = OptionParser.new do |opt|
-        opt.banner = usage
-        opt.on("-v", "--version", "Show version") do
-          puts "version #{File.read(File.join(File.dirname(__FILE__), '..', '..', 'VERSION'))}"
-          exit
-        end
-      end
-      o.parse!
+      o = parse_options(self.usage)
       if(ARGV[0].nil?)
         puts o
       else

@@ -1,5 +1,7 @@
 module Oci8Simple
   class Show
+    include Command
+    
     TYPES={
       "functions" =>  "Function",
       "packages"  =>  "Package",
@@ -22,14 +24,7 @@ module Oci8Simple
     end
     
     def self.run_from_argv
-      o = OptionParser.new do |opt|
-        opt.banner = usage
-        opt.on("-v", "--version", "Show version") do
-          puts "version #{File.read(File.join(File.dirname(__FILE__), '..', '..', 'VERSION'))}"
-          exit
-        end
-      end
-      o.parse!
+      o = parse_options(self.usage)
       if(ARGV[0].nil? || TYPES[ARGV[0]].nil?)
         puts o
       else
