@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
-  s.date = %q{2011-06-30}
+  s.date = %q{2011-07-06}
   s.description = %q{Command-line tools for interacting with an Oracle database. This client is intended to be used 
   to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
   The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/oci8_simple.rb",
     "lib/oci8_simple/cli.rb",
     "lib/oci8_simple/client.rb",
+    "lib/oci8_simple/command.rb",
     "lib/oci8_simple/describe.rb",
     "lib/oci8_simple/show.rb",
     "oci8_simple.gemspec",
