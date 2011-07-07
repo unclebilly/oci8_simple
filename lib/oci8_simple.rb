@@ -1,8 +1,10 @@
 require 'rubygems'
-require 'pp'
+
+require 'abbrev'
 require 'bigdecimal'
-require 'yaml'
 require 'optparse'
+require 'pp'
+require 'yaml'
 
 gem 'ruby-oci8'
 require 'oci8'

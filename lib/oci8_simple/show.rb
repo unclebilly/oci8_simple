@@ -1,8 +1,16 @@
 module Oci8Simple
   class Show
     TYPES={
-      "tables" => "Table"
+      "functions" =>  "Function",
+      "packages"  =>  "Package",
+      "procedures" => "Procedure",
+      "sequences" =>  "Sequence",
+      "synonyms"  =>  "Synonym",
+      "tables" =>     "Table",
+      "types" =>      "Type",
+      "views" =>      "View"
     }
+    
     def run(type)
       clazz = eval("OCI8::Metadata::#{TYPES[type]}")
       objects = client.send(:conn).describe_schema(client.config["username"]).all_objects.find_all{|f| f.class == clazz}
@@ -22,7 +30,7 @@ module Oci8Simple
         end
       end
       o.parse!
-      if(ARGV[0].nil?)
+      if(ARGV[0].nil? || TYPES[ARGV[0]].nil?)
         puts o
       else
         puts self.new(ARGV[1]).run(ARGV[0])
@@ -33,15 +41,7 @@ module Oci8Simple
       <<-STR
 Usage: #{$0} TYPE [ENVIRONMENT]
 
-Supported types: 
-   functions
-   packages
-   procedures
-   sequences
-   synonyms
-   tables
-   types
-   views   
+TYPE is one of: #{TYPES.keys.sort.join(", ")}
 STR
     end
     
