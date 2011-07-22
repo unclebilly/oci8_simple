@@ -59,7 +59,7 @@ module Oci8Simple
         row = []
         r.map do |col|
           if col.class == BigDecimal
-            row << col.to_i
+            row << col.to_f
           elsif col.class == OCI8::CLOB
             row << col.read
           else
