@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="oci8_simple : Run single sql statements against an Oracle schema " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>oci8_simple</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/unclebilly/oci8_simple">Fork Me on GitHub</a>
+
+          <h1 id="project_title">oci8_simple</h1>
+          <h2 id="project_tagline">Run single sql statements against an Oracle schema </h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/unclebilly/oci8_simple/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/unclebilly/oci8_simple/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>This gem is a thin wrapper around the ruby-oci8 gem.  The client is intended to be used by simple 
+scripts to aid automation.  The code is intentionally light-weight and featureless, with very little startup time.</p>
+
+<p>It is not meant to be a Ruby ORM for Oracle - if you want that, look at the OracleEnhancedAdapter. </p>
+
+<h1>Installation</h1>
+
+<p>Before installing, you must have Oracle Instantclient installed on your machine. See <a href="http://www.oracle.com/technetwork/database/features/instant-client/index-100365.html">http://www.oracle.com/technetwork/database/features/instant-client/index-100365.html</a> for details.</p>
+
+<pre>
+$ gem install oci8_simple
+</pre>
+
+<p>Next, create the file <code>~/.oci8_simple/database.yml</code> and put some schemas in it. The format is the same as the Rails configuration file - in fact you can use the same file.  </p>
+
+<pre>
+development:
+  database: 192.168.1.3:1521/xe
+  username: rash_doctor
+  password: N33dlez
+</pre>
+
+<h1>Shell helpers</h1>
+
+<p>Oci8Simple installs several shell scripts.  Each script takes an optional parameter to specify which database to connect to. Database configuration is pulled from <code>~/oci8_simple/database.yml</code>.  If no database is specified, Oci8Simple uses "development." </p>
+
+<h2><code>oci8_simple</code></h2>
+
+<p>run arbitrary SQL</p>
+
+<pre>
+$ oci8_simple 'select id, name from rashes'
+214381688, Psoriasis
+1418205031, Dermatitis
+2104832561, Chicken Pox
+1600313148, Impetigo
+</pre>
+
+<h2><code>describe</code></h2>
+
+<p>describe a table</p>
+
+<pre>
+$ describe rashes
+Required  Name             Type      Size    Char?  Char_size  Precision  Scale  Default   
+-------------------------------------------------------------------------------------------
+          description      clob                                                            
+       *  id               number    22.0                      38.0       0.0              
+          oozing_pus       number    22.0                      1.0        0.0    1         
+          name             varchar2  1020.0  *      255.0                                  
+          itchy            number    22.0                      1.0        0.0    0         
+</pre>
+
+<h2><code>show</code></h2>
+
+<p>list things in the database (tables, views, etc.)</p>
+
+<pre>
+$ show tables
+infections
+rashes
+sores
+wounds
+</pre>
+
+<h1>Ruby code</h1>
+
+<p>You can also use oci8_simple in your Ruby scripts by creating an instance of <code>Oci8Simple::Client</code>.</p>
+
+<pre>
+require 'rubygems'
+require 'oci8_simple'
+
+# connect to the "test" database defined in ~/.oci8_simple/database.yml
+client = Oci8Simple::Client.new("test")  
+   
+# please oh god make the pain stop
+client.run("select id, name from rashes")
+
+# [[214381688, "Psoriasis"], 
+#  [1418205031, "Dermatitis"], 
+#  [2104832561, "Chicken Pox"], 
+#  [1600313148, "Impetigo"]]
+</pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">oci8_simple maintained by <a href="https://github.com/unclebilly">unclebilly</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
