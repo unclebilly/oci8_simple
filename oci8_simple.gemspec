@@ -4,17 +4,15 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{oci8_simple}
-  s.version = "0.6.1"
+  s.name = "oci8_simple"
+  s.version = "0.7.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
-  s.date = %q{2011-07-22}
-  s.description = %q{Command-line tools for interacting with an Oracle database. This client is intended to be used 
-  to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
-  The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
-  s.email = %q{billy.reisinger@gmail.com}
-  s.executables = ["show", "oci8_simple", "describe"]
+  s.date = "2012-04-17"
+  s.description = "Command-line tools for interacting with an Oracle database. This client is intended to be used \n  to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.\n  The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine."
+  s.email = "billy.reisinger@gmail.com"
+  s.executables = ["oci8_simple", "describe", "show"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -42,43 +40,36 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/show_test.rb"
   ]
-  s.homepage = %q{http://github.com/unclebilly/oci8_simple}
+  s.homepage = "http://github.com/unclebilly/oci8_simple"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.2}
-  s.summary = %q{Command-line tools for interacting with an Oracle database.}
-  s.test_files = [
-    "test/cli_test.rb",
-    "test/client_test.rb",
-    "test/describe_test.rb",
-    "test/helper.rb",
-    "test/show_test.rb"
-  ]
+  s.rubygems_version = "1.8.19"
+  s.summary = "Command-line tools for interacting with an Oracle database."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
+      s.add_runtime_dependency(%q<ruby-oci8>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
+      s.add_development_dependency(%q<pry>, [">= 0"])
       s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
     else
-      s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
+      s.add_dependency(%q<ruby-oci8>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
+      s.add_dependency(%q<pry>, [">= 0"])
       s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
     end
   else
-    s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
+    s.add_dependency(%q<ruby-oci8>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
+    s.add_dependency(%q<pry>, [">= 0"])
     s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
   end
 end
