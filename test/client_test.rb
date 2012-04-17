@@ -55,6 +55,9 @@ class ClientTest < Test::Unit::TestCase
       should "be able to run a simple query with multiple results and multiple columns" do
         assert_equal [["1", "Johnny", "OMG"], ["2", "Jenny", "OMG"]], @client.run("select * from OCI8_SIMPLE_TEST")
       end
+      should "be able to run a simple query with a single result and return a hash" do
+        assert_equal [{:count => 2}], @client.run("select count(*) as count from OCI8_SIMPLE_TEST", :hash => true)
+      end
     
       should "have logged something" do
         File.unlink(Oci8Simple::Client::LOG_FILE)

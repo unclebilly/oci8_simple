@@ -52,25 +52,49 @@ module Oci8Simple
       raise LogError.new("Cannot write to #{LOG_FILE}... be sure you have write permissions to #{USER_DIR}")
     end
   
-    def run(sql)
+    # sql - a query
+    # options: 
+    #   :hash => true|false - default is false - return an array of hashes (with column names) 
+    #            instead of an array or arrays
+    def run(sql, options={})
       log(sql)
       result = []
-      conn.exec(sql) do |r|
-        row = []
-        r.map do |col|
-          if col.class == BigDecimal
-            row << col.to_f
-          elsif col.class == OCI8::CLOB
-            row << col.read
-          else
-            row << col.to_s
-          end
+      if(options[:hash])
+        fetch_hashes(sql) do |r|
+          result << r
         end
-        result << row
+      else
+        fetch_arrays(sql) do |r|
+          result << r
+        end
       end
       result
     end
   
+    def fetch_hashes(sql, &block)
+      cursor = conn.exec(sql)
+      col_names = cursor.get_col_names.map{|s| s.downcase.to_sym }
+      while(r = cursor.fetch) do
+        yield Hash[*col_names.zip(r.map {|col| record_to_string(col)}).flatten]
+      end
+    end
+
+    def fetch_arrays(sql, &block)
+      conn.exec(sql) do |r|
+        yield r.map{|col| record_to_string(col)}
+      end
+    end
+
+    def record_to_string(record)
+      if record.class == BigDecimal
+        record.to_f
+      elsif record.class == OCI8::CLOB
+        record.read
+      else
+        record.to_s
+      end
+    end
+
     def config
       @config ||= YAML.load_file(CONFIG_FILE)[env]
     rescue Errno::ENOENT => e

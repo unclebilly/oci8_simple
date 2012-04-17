@@ -14,12 +14,16 @@ module Oci8Simple
       self.env = env
     end
     
-    def run(sql)
-      format(client.run(sql))
+    def run(sql, options={})
+      format(client.run(sql, options), options)
     end
     
-    def format(arr)
-      arr.map{|row| row.join(", ")}.join("\n")
+    def format(arr, options)
+      if(options[:hash])
+        arr.map{|row| row.map{|k,v| "#{k}: #{v}"}.join("\n")}.join("\n\n")
+      else
+        arr.map{|row| row.join(", ")}.join("\n")
+      end
     end
     
     def client
@@ -35,7 +39,7 @@ module Oci8Simple
       if(ARGV[0].nil?)
         puts o
       else
-        puts self.new(ARGV[1]).run(ARGV[0])
+        puts self.new(ARGV[1]).run(ARGV[0], @options)
       end
     end
     

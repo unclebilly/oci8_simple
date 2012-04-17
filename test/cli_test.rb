@@ -23,6 +23,9 @@ class CliTest < Test::Unit::TestCase
       should "format results for the command line" do
         assert_equal("1, Johnny, OMG\n2, Jenny, OMG", @cli.run("select * from oci8_simple_test"))
       end
+      should "format results for the command line using column names" do
+        assert_equal("name: Johnny\n\nname: Jenny", @cli.run("select name from oci8_simple_test", :hash => true))
+      end
     end
     context "without an env" do
       setup do

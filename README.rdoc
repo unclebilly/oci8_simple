@@ -81,7 +81,8 @@ functions, packages, procedures, sequences, synonyms, tables, types, and views.
     require 'oci8_simple'
     client = Oci8Simple::Client.new
 * Run a simple select query against development schema
-    client.run('select id, name from foos') => [[2, "lol"], [3, "hey"], ...]
+    client.run('select id, name from foos')                => [[2, "lol"], [3, "hey"], ...]
+    client.run('select id, name from foos', :hash => true) => [{:id => 2, :name => "lol"}, {:id => 3, :name=>"hey"}, ...])
 * Update something
     client.run <<-SQL
       UPDATE foos SET bar='baz' WHERE id=1233

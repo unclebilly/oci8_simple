@@ -1,10 +1,10 @@
 source :rubygems
 
-gem "ruby-oci8", "~>2.0.4"
+gem "ruby-oci8"
 
 group :development do
   gem "shoulda", ">= 0"
-  gem "bundler", "~> 1.0.0"
-  gem "jeweler", "~> 1.5.2"
+  gem "jeweler"
   gem "mocha", ">= 0"
+  gem "pry"
 end

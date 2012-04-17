@@ -20,16 +20,14 @@ class DescribeTest < Test::Unit::TestCase
       end
       should "format results for the command line" do
         expected=<<-STR
-Required  Name        Type      Size  Char?  Char_size  Precision  Scale  Default   
-------------------------------------------------------------------------------------
-       *  id          number    22                      38         0      7         
-       *  long_thing  varchar2  4000  *      2000                         a a a a a ...
-       *  name        varchar2  1600  *      400                          FOO       
-          texts       clob                                                          
+Required  Name        Type      Size    Char?  Char_size  Precision  Scale  Default   
+--------------------------------------------------------------------------------------
+       *  id          number    22.0                      38.0       0.0    7         
+       *  long_thing  varchar2  4000.0  *      2000.0                       a a a a a ...
+       *  name        varchar2  1600.0  *      400.0                        FOO       
+          texts       clob                                                            
 STR
-        # puts
-        # puts expected.chop
-        # puts @describe.run("oci8_simple_test")
+
         assert_equal(expected.chop, @describe.run("oci8_simple_test"))
       end
     end
