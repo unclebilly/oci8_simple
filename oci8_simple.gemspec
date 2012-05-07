@@ -4,15 +4,17 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "oci8_simple"
-  s.version = "0.7.0"
+  s.name = %q{oci8_simple}
+  s.version = "0.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
-  s.date = "2012-04-17"
-  s.description = "Command-line tools for interacting with an Oracle database. This client is intended to be used \n  to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.\n  The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine."
-  s.email = "billy.reisinger@gmail.com"
-  s.executables = ["oci8_simple", "describe", "show"]
+  s.date = %q{2012-05-07}
+  s.description = %q{Command-line tools for interacting with an Oracle database. This client is intended to be used 
+  to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
+  The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
+  s.email = %q{billy.reisinger@gmail.com}
+  s.executables = ["show", "oci8_simple", "describe"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -40,11 +42,11 @@ Gem::Specification.new do |s|
     "test/helper.rb",
     "test/show_test.rb"
   ]
-  s.homepage = "http://github.com/unclebilly/oci8_simple"
+  s.homepage = %q{http://github.com/unclebilly/oci8_simple}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.19"
-  s.summary = "Command-line tools for interacting with an Oracle database."
+  s.rubygems_version = %q{1.5.2}
+  s.summary = %q{Command-line tools for interacting with an Oracle database.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
