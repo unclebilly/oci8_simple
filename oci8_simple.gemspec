@@ -57,14 +57,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<pry>, [">= 0"])
-      s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
+      s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.1.2"])
     else
       s.add_dependency(%q<ruby-oci8>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
-      s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
+      s.add_dependency(%q<ruby-oci8>, ["~> 2.1.2"])
     end
   else
     s.add_dependency(%q<ruby-oci8>, [">= 0"])
@@ -72,7 +72,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
-    s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
+    s.add_dependency(%q<ruby-oci8>, ["~> 2.1.2"])
   end
 end
 
