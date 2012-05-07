@@ -35,7 +35,7 @@ end
 
 desc "Release the gem to rubygems.org"
 task :release => :build do
-  version = File.read(File.expand_path("VERSION", __FILE__)).strip
+  version = File.read(File.expand_path("../VERSION", __FILE__)).strip
   ourgem = "oci8_simple-#{version}.gem"
   system "gem push #{ourgem}"
 end
