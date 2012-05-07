@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{oci8_simple}
-  s.version = "0.8.0"
+  s.version = "0.8.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   to aid development and automation.  This is *not* meant to replace an ORM such as ActiveRecord + OracleEnhancedAdapter.
   The only prerequisite to running this code is that you have installed the ruby-oci8 gem on your machine.}
   s.email = %q{billy.reisinger@gmail.com}
-  s.executables = ["show", "oci8_simple", "describe"]
+  s.executables = ["oci8_simple", "show", "describe"]
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
@@ -57,14 +57,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<pry>, [">= 0"])
-      s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.1.2"])
+      s.add_runtime_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
     else
       s.add_dependency(%q<ruby-oci8>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<pry>, [">= 0"])
-      s.add_dependency(%q<ruby-oci8>, ["~> 2.1.2"])
+      s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
     end
   else
     s.add_dependency(%q<ruby-oci8>, [">= 0"])
@@ -72,7 +72,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<pry>, [">= 0"])
-    s.add_dependency(%q<ruby-oci8>, ["~> 2.1.2"])
+    s.add_dependency(%q<ruby-oci8>, ["~> 2.0.4"])
   end
 end
 
