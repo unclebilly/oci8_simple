@@ -11,12 +11,12 @@ doc
 # bundler
 .bundle
 
-# jeweler generated
-pkg
 .DS_Store
+
 # For TextMate
 *.tmproj
 tmtags
 
 sqlnet.log
 .rvmrc
+*.gem
