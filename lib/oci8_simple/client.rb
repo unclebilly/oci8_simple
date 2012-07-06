@@ -77,6 +77,7 @@ module Oci8Simple
       while(r = cursor.fetch) do
         yield Hash[*col_names.zip(r.map {|col| record_to_string(col)}).flatten]
       end
+      cursor.close
     end
 
     def fetch_arrays(sql, &block)
