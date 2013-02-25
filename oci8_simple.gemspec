@@ -1,8 +1,7 @@
+require 'date'
 Gem::Specification.new do |s|
   s.name = %q{oci8_simple}
   s.version = File.read(File.expand_path("../VERSION", __FILE__)).strip
-
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
   s.date = Date.today
   s.description = %q{Command-line tools for interacting with an Oracle database. This client is intended to be used 
@@ -40,7 +39,6 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/unclebilly/oci8_simple}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.2}
   s.summary = %q{Command-line tools for interacting with an Oracle database.}
 
   if s.respond_to? :specification_version then
