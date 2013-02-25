@@ -20,3 +20,5 @@ tmtags
 sqlnet.log
 .rvmrc
 *.gem
+
+Gemfile.lock
