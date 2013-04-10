@@ -16,15 +16,15 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/unclebilly/oci8_simple">Fork Me on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/unclebilly/oci8_simple">View on GitHub</a>
 
           <h1 id="project_title">oci8_simple</h1>
           <h2 id="project_tagline">Run single sql statements against an Oracle schema </h2>
 
-          <section id="downloads">
-            <a class="zip_download_link" href="https://github.com/unclebilly/oci8_simple/zipball/master">Download this project as a .zip file</a>
-            <a class="tar_download_link" href="https://github.com/unclebilly/oci8_simple/tarball/master">Download this project as a tar.gz file</a>
-          </section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/unclebilly/oci8_simple/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/unclebilly/oci8_simple/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
     </div>
 
@@ -44,12 +44,25 @@ scripts to aid automation.  The code is intentionally light-weight and featurele
 $ gem install oci8_simple
 </pre>
 
-<p>Next, create the file <code>~/.oci8_simple/database.yml</code> and put some schemas in it. The format is the same as the Rails configuration file - in fact you can use the same file.  </p>
+<p>oci8_simple uses the same database configuration file format that ActiveRecord uses.  It will look in the following places for the configuration file, in order: </p>
+
+<pre>
+Dir.pwd + "/database.yml"
+Dir.pwd + "/config/database.yml"
+~/.oci8_simple/database.yml
+</pre>
+
+<p>As an example, this database.yml defines the 'development' and 'test' schema connections: </p>
 
 <pre>
 development:
   database: 192.168.1.3:1521/xe
   username: rash_doctor
+  password: N33dlez
+
+test:
+  database: 192.168.1.3:1521/xe
+  username: skin_doctor
   password: N33dlez
 </pre>
 
