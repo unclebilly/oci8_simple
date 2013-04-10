@@ -36,7 +36,7 @@ module Oci8Simple
   #     SQL
   class Client
     USER_DIR = File.join(ENV["HOME"], ".oci8_simple")
-    CONFIG_FILE = File.join(USER_DIR, "database.yml")
+    CONFIG   = Config.new
     LOG_FILE = File.join(USER_DIR, "oci8_simple.log")
   
     attr_accessor :log_file, :env
@@ -97,17 +97,7 @@ module Oci8Simple
     end
 
     def config
-      @config ||= YAML.load_file(CONFIG_FILE)[env]
-    rescue Errno::ENOENT => e
-      raise ConfigError.new <<-ERR
-File #{CONFIG_FILE} doesn't exist - use the following template:
-
-environment:
-  database: 192.168.1.3:1521/sid
-  username: foo_user
-  password: foobar
-
-ERR
+      @config ||= CONFIG[  env]
     end
     
     # Create and return raw Oci8 connection
@@ -116,8 +106,6 @@ ERR
     end
     
     private
-    
-
     
     def new_connection
       c = OCI8.new(config["username"], config["password"], config["database"])

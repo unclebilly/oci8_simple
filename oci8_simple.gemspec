@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "lib/oci8_simple/cli.rb",
     "lib/oci8_simple/client.rb",
     "lib/oci8_simple/command.rb",
+    "lib/oci8_simple/config.rb",
     "lib/oci8_simple/describe.rb",
     "lib/oci8_simple/show.rb",
     "oci8_simple.gemspec",

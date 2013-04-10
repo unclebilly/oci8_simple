@@ -21,10 +21,11 @@ You can also use oci8_simple in your Ruby scripts by creating an instance of <co
   gem install oci8_simple
 
 == Configuration
-To configure environments and schema settings, edit the 
-database.yml file in <code>~/.oci8_simple/</code>.
-The database.yml format is compatible with the Rails format, so you may just symlink
-an existing file into this directory if you already have one.
+Oci8Simple will look in three places for your database configuration, in the following order:
+* Dir.pwd + database.yml
+* Dir.pwd + config/database.yml
+* ~/.oci8_simple/database.yml
+The database.yml format is compatible with the Rails format.
   development:
     database: oracle.hostname:1521/sid
     username: foo_dev
