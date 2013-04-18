@@ -20,7 +20,9 @@ class ClientTest < Test::Unit::TestCase
     end
     context "with no database.yml" do
       setup do
-        YAML.expects(:load_file).with(Oci8Simple::Client::CONFIG_FILE).raises(Errno::ENOENT.new)
+        fake_file = "/flkjlkj/flkjljk/flklkj"
+        Oci8Simple::Config.any_instance.expects(:database_yaml_path).returns(fake_file)
+        YAML.expects(:load_file).with(fake_file).raises(Errno::ENOENT.new)
       end
       should "raise a custom error" do
         assert_raise Oci8Simple::ConfigError do

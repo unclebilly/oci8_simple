@@ -25,11 +25,12 @@ module Oci8Simple
     end
 
     def load_yaml
+      file = database_yaml_path
       begin
-        @raw_config = YAML.load_file(database_yaml_path)
+        @raw_config = YAML.load_file(file)
       rescue Errno::ENOENT => e
         raise ConfigError.new <<-ERR
-File #{CONFIG_FILE} doesn't exist - use the following template:
+File #{file} doesn't exist - use the following template:
 
 environment:
   database: 192.168.1.3:1521/sid

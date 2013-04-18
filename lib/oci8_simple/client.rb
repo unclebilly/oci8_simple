@@ -36,7 +36,6 @@ module Oci8Simple
   #     SQL
   class Client
     USER_DIR = File.join(ENV["HOME"], ".oci8_simple")
-    CONFIG   = Config.new
     LOG_FILE = File.join(USER_DIR, "oci8_simple.log")
   
     attr_accessor :log_file, :env
@@ -97,7 +96,7 @@ module Oci8Simple
     end
 
     def config
-      @config ||= CONFIG[  env]
+      @config ||= Config.new[env]
     end
     
     # Create and return raw Oci8 connection
