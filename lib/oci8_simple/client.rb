@@ -81,7 +81,8 @@ module Oci8Simple
 
     def fetch_arrays(sql, &block)
       conn.exec(sql) do |r|
-        yield r.map{|col| record_to_string(col)}
+        result = r.respond_to?(:map) ? r.map{|col| record_to_string(col)} : r
+        yield result
       end
     end
 

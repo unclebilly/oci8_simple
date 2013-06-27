@@ -31,6 +31,18 @@ class ClientTest < Test::Unit::TestCase
       end
     end
   end
+  context "Running a procedure with nil return" do
+    setup do
+      @client = Oci8Simple::Client.new("test")
+      @client.conn.expects(:exec).yields(nil)
+    end
+    should "not raise an exception" do
+      assert_nothing_raised do
+        @client.run("A NOOP")
+      end
+    end
+  end
+
   context "Given a table" do
     setup do
       @client = Oci8Simple::Client.new("test")
