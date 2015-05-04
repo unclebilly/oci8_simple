@@ -19,8 +19,10 @@ module Oci8Simple
     def database_yaml_path
       path = File.join(Dir.pwd, "database.yml")
       return path if File.exists?(path)
+
       path = File.join(Dir.pwd, "config", "database.yml")
       return path if File.exists?(path)
+      
       File.join(USER_DIR, "database.yml")
     end
 

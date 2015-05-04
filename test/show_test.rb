@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), 'helper')
-class ShowTest < Test::Unit::TestCase
+class ShowTest < Minitest::Test
   def setup
     @client = Oci8Simple::Client.new("test")
     @show =   Oci8Simple::Show.new("test")
@@ -19,15 +19,14 @@ class ShowTest < Test::Unit::TestCase
       SQL
     end
     should "list the tables" do
-      assert_equal ["oci8_simple_test","oci8_simple_test_2"], @show.run("tables")
+      assert((["oci8_simple_test", "oci8_simple_test_2"] - @show.run("tables")).empty?)
     end
   end
   
   context "Show functions" do
     setup do
-      @client.run "drop function oci8_simple_function" rescue nil
-      @client.run <<-SQL
-        CREATE FUNCTION oci8_simple_function 
+      @fct = <<-SQL
+        CREATE OR REPLACE FUNCTION \"#{@client.config["username"]}\".\"OCI8_SIMPLE_FUNCTION\"
         RETURN NUMBER 
         IS num NUMBER(1,0);
         BEGIN 
@@ -35,24 +34,33 @@ class ShowTest < Test::Unit::TestCase
           RETURN(num); 
         END
       SQL
+      @client.run "drop function oci8_simple_function" rescue nil
+      @client.run @fct
     end
     should "list the functions" do
-      assert_equal ["oci8_simple_function"], @show.run("functions")
+      assert((["oci8_simple_function"] - @show.run("functions")).empty?)
+    end
+    should "show the function" do
+      assert_equal @fct.gsub(/\s+/,' '), @show.run("function", "oci8_simple_function").gsub(/\s+/,' ')
     end
   end
   
   context "Show packages" do
     setup do
-      @client.run "drop package oci8_simple_package" rescue nil
-      @client.run <<-SQL
-        CREATE OR REPLACE PACKAGE oci8_simple_package AS 
+      @pkg = <<-SQL
+        CREATE OR REPLACE PACKAGE \"#{@client.config["username"]}\".\"OCI8_SIMPLE_PACKAGE\" AS 
            FUNCTION something(id NUMBER, foo NUMBER) 
               RETURN NUMBER; 
-        END oci8_simple_package
+        END OCI8_SIMPLE_PACKAGE
       SQL
+      @client.run "drop package oci8_simple_package" rescue nil
+      @client.run @pkg
     end
     should "list the packages" do
-      assert_equal ["oci8_simple_package"], @show.run("packages")
+      assert((["oci8_simple_package"] - @show.run("packages")).empty?)
+    end
+    should "show the package" do
+      assert_equal @pkg.gsub(/\s+/,' '), @show.run("package", "oci8_simple_package").gsub(/\s+/,' ')
     end
   end
   
@@ -67,7 +75,7 @@ class ShowTest < Test::Unit::TestCase
       SQL
     end
     should "list the procedures" do
-      assert_equal ["oci8_simple_procedure"], @show.run("procedures")
+      assert((["oci8_simple_procedure"] - @show.run("procedures")).empty?)
     end
   end
   
@@ -79,7 +87,7 @@ class ShowTest < Test::Unit::TestCase
       SQL
     end
     should "list the sequences" do
-      assert_equal ["oci8_simple_sequence"], @show.run("sequences")
+      assert((["oci8_simple_sequence"] - @show.run("sequences")).empty?)
     end
   end
   
@@ -92,7 +100,7 @@ class ShowTest < Test::Unit::TestCase
       SQL
     end
     should "list the synonyms" do
-      assert_equal ["oci8_simple_synonym"], @show.run("synonyms")
+      assert((["oci8_simple_synonym"] - @show.run("synonyms")).empty?)
     end
   end
   
@@ -105,7 +113,7 @@ class ShowTest < Test::Unit::TestCase
       SQL
     end
     should "list the types" do
-      assert_equal ["oci8_simple_type"], @show.run("types")
+      assert((["oci8_simple_type"] - @show.run("types")).empty?)
     end
   end
   
@@ -118,7 +126,7 @@ class ShowTest < Test::Unit::TestCase
       SQL
     end
     should "list the views" do
-      assert_equal ["oci8_simple_view"], @show.run("views")
+      assert((["oci8_simple_view"] - @show.run("views")).empty?)
     end
   end
 end

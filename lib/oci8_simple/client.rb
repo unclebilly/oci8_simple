@@ -36,19 +36,23 @@ module Oci8Simple
   #     SQL
   class Client
     USER_DIR = File.join(ENV["HOME"], ".oci8_simple")
-    LOG_FILE = File.join(USER_DIR, "oci8_simple.log")
+    LOG_FILE_PATH = File.join(USER_DIR, "oci8_simple.log")
   
-    attr_accessor :log_file, :env
-  
+    attr_accessor :log_file, :log_file_path, :env
+    
+    def log_file_path
+      @log_file_path || LOG_FILE_PATH
+    end
+
     # * env is the environment heading in your database.yml file
     def initialize(env=nil)
       self.env = env || "development"
     end
 
     def log_file
-      @log_file ||= File.open(LOG_FILE, 'a')
-    rescue Errno::EACCES => e
-      raise LogError.new("Cannot write to #{LOG_FILE}... be sure you have write permissions to #{USER_DIR}")
+      @log_file ||= File.open(log_file_path, 'a')
+    rescue Errno::EACCES, Errno::ENOENT => e
+      raise LogError.new("Cannot write to #{log_file_path}")
     end
   
     # sql - a query

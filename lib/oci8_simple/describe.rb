@@ -45,7 +45,7 @@ module Oci8Simple
       if(ARGV[0].nil?)
         puts o
       else
-        puts self.new(ARGV[1]).run(ARGV[0])
+        puts self.new(@options[:environment]).run(ARGV[0])
       end
     end
   

@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), 'helper')
 
-class ClientTest < Test::Unit::TestCase
+class ClientTest < Minitest::Test
   context "A client" do
     setup do
       @client = Oci8Simple::Client.new
@@ -10,23 +10,11 @@ class ClientTest < Test::Unit::TestCase
     end
     context "with a bad log file" do
       setup do
-        File.expects(:open).with(Oci8Simple::Client::LOG_FILE, 'a').raises(Errno::EACCES.new("no permission"))
+        @client.log_file_path = "/bridge/to/nowhere"
       end
       should "raise custom error" do
-        assert_raise Oci8Simple::LogError do
+        assert_raises Oci8Simple::LogError do
           @client.log_file
-        end
-      end
-    end
-    context "with no database.yml" do
-      setup do
-        fake_file = "/flkjlkj/flkjljk/flklkj"
-        Oci8Simple::Config.any_instance.expects(:database_yaml_path).returns(fake_file)
-        YAML.expects(:load_file).with(fake_file).raises(Errno::ENOENT.new)
-      end
-      should "raise a custom error" do
-        assert_raise Oci8Simple::ConfigError do
-          @client.config
         end
       end
     end
@@ -34,12 +22,9 @@ class ClientTest < Test::Unit::TestCase
   context "Running a procedure with nil return" do
     setup do
       @client = Oci8Simple::Client.new("test")
-      @client.conn.expects(:exec).yields(nil)
     end
     should "not raise an exception" do
-      assert_nothing_raised do
-        @client.run("A NOOP")
-      end
+      @client.run("SELECT NULL FROM DUAL")
     end
   end
 
@@ -74,13 +59,13 @@ class ClientTest < Test::Unit::TestCase
       end
     
       should "have logged something" do
-        File.unlink(Oci8Simple::Client::LOG_FILE)
-        assert(!File.exists?(Oci8Simple::Client::LOG_FILE))
+        File.unlink(Oci8Simple::Client::LOG_FILE_PATH)
+        assert(!File.exists?(Oci8Simple::Client::LOG_FILE_PATH))
         @client = Oci8Simple::Client.new("test")
         @client.run "select NULL from dual"
         @client.log_file.close
-        assert(File.exists?(Oci8Simple::Client::LOG_FILE))
-        assert(!(0 == File.size(Oci8Simple::Client::LOG_FILE)))
+        assert(File.exists?(Oci8Simple::Client::LOG_FILE_PATH))
+        assert(!(0 == File.size(Oci8Simple::Client::LOG_FILE_PATH)))
       end
     end
   end

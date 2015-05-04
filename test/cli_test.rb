@@ -1,5 +1,5 @@
 require File.join(File.dirname(__FILE__), 'helper')
-class CliTest < Test::Unit::TestCase
+class CliTest < Minitest::Test
   context "Given a table and some data" do
     setup do
       @client = Oci8Simple::Client.new("test")
