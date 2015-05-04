@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = %q{billy.reisinger@gmail.com}
   s.executables = ["oci8_simple", "show", "describe"]
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
